@@ -333,7 +333,7 @@ end
 
 function _pfmt_g(out::IO, fs::FormatSpec, x::AbstractFloat)
     # Branch according to the exponent
-    expnt = floor(Int, log10(abs(x)) )
+    expnt = x == 0 ? 0 : floor(Int, log10(abs(x)) )
     if -4 <= expnt < fs.prec
         newprec = fs.prec - expnt - 1
         _pfmt_f(out, FormatSpec(fs ;prec=newprec), x)
